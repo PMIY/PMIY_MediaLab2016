@@ -3,8 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    
-    def = new Deform("models/Hip.3ds");
+    def = new Deform("models/dog.3ds");
     def2 = new Deform("models/bast.3ds");
     def3 = new Deform("models/Belly.3ds");
     def4 = new Deform("models/Back.3ds");
@@ -16,12 +15,14 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofBackground(0);
     ofEnableDepthTest();
-    //ライトを配置
-    light.enable();
-    light.setPosition(-100, 100, 500);
-    light.setAmbientColor(ofFloatColor(0.5,0.5,0.5));
-    light.setDiffuseColor(ofFloatColor(1.0,1.0,1.0));
-    light.setSpecularColor(ofFloatColor(1.0,1.0,1.0));
+    ofSetVerticalSync(true);
+    
+    debug_num = 0;
+    
+    areaLight.setAmbientColor(ofFloatColor(0.1,0.1,0.1));
+    areaLight.setDiffuseColor(ofFloatColor(1,1,1));
+    areaLight.setSpecularColor(ofFloatColor(1,1,1));
+    areaLight.setPosition(0,500,500);
     
 }
 
@@ -34,10 +35,11 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-
-
+    
+    
     cam.begin();
     
+    //def->drawDebug(debug_num);
     def->draw();
     def2->draw();
     def3->draw();
@@ -46,9 +48,12 @@ void ofApp::draw(){
     def6->draw();
     def7->draw();
     def8->draw();
-
+    
     cam.end();
+    ofDrawBitmapString(ofToString(debug_num), 10, 10);
+    
 
+    
 }
 
 //--------------------------------------------------------------
@@ -58,6 +63,12 @@ void ofApp::keyPressed(int key){
          case 's':mesh.save("mesh.ply");
      }
      */
+    if(key == OF_KEY_UP){
+        debug_num++;
+    }
+    if(key == OF_KEY_DOWN){
+        debug_num--;
+    }
 }
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){

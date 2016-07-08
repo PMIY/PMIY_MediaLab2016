@@ -10,13 +10,25 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/Deform.cpp"
-            timestampString = "488625796.521982"
+            timestampString = "489234210.807254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "Deform::setup()"
-            landmarkType = "5">
+            startingLineNumber = "26"
+            endingLineNumber = "26">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Myapps2/06083DModel/src/Deform.h"
+            timestampString = "489040397.602727"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

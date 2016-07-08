@@ -25,7 +25,10 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     ofEasyCam cam;
-    ofLight light;
+    ofLight areaLight;
     Deform *def,*def2,*def3,*def4,*def5,*def6,*def7,*def8;
+    
+    int debug_num;
+    
 		
 };

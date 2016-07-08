@@ -4,23 +4,18 @@
 Deform::Deform( string fileName ){
     
     mod.loadModel(fileName);
-
     ofDisableArbTex();
-    image.load("skin2.jpg");
-    
-    ofSetVerticalSync(true);
-
-    //we need to call this for textures to work on models
-    ofDisableArbTex();
-    
-    //this makes sure that the back of the model doesn't show through the front
-    ofEnableDepthTest();
+    image.load("skin3.jpg");
     
     }
 
 
 void Deform::setup(){
     
+    materialPlane.setAmbientColor(ofFloatColor(0.1,0.1,0.1,1.0));
+    materialPlane.setDiffuseColor(ofFloatColor(0.8,0.8,0.8,1.0));
+    materialPlane.setSpecularColor(ofFloatColor(0.8,0.8,0.8,1.0));
+    materialPlane.setShininess(10);
     
 }
 
@@ -57,17 +52,63 @@ void Deform::draw(){
         verts[i].z += ofSignedNoise(verts[i].y/liquidness, verts[i].z/liquidness,verts[i].x/liquidness, ofGetElapsedTimef()/speedDampen)*amplitude;
     }
     
-    //位置と向きをランダムに
-    ofRotate(degree, rotatex, rotatey, rotatez);
-
+    
     //テクスチャ貼り付け、メッシュの描画
+    materialPlane.begin();
     image.getTexture().bind();
+    
     mesh.drawFaces();
+    
     image.getTexture().unbind();
+    materialPlane.end();
+    
+    ofPopMatrix();
+}
+    
+
+   
+    
+    
+    
+    //POINT
+
+void Deform::drawDebug(int pnum){
+    ofVec3f scale = mod.getScale();
+    ofVec3f position = mod.getPosition();
+    float normalizedScale = mod.getNormalizedScale();
+    mesh = mod.getMesh(0);
+    
+    ofPushMatrix();
+    
+    //スケール
+    ofScale(normalizedScale, normalizedScale, normalizedScale);
+    ofScale(scale.x,scale.y,scale.z);
+    
+    
+    //modify mesh with some noise
+    float liquidness = 10;
+    float amplitude = 0.02;
+    float speedDampen = ofNoise(50,100);
+    vector<ofVec3f>& verts = mesh.getVertices();
+    
+    ofSetColor(0, 255, 255);
+
+    for(unsigned int i = 0; i < verts.size(); i++){
+        if(i != pnum){
+        ofDrawCircle(verts[i].x, verts[i].y, verts[i].z,0.01);
+        }
+    }
+    
+    if(pnum < verts.size()){
+        ofSetColor(255, 0, 0);
+
+        ofDrawCircle(verts[pnum].x, verts[pnum].y, verts[pnum].z,0.05);
+    }
+
+    ofSetColor(255,255,255);
     
     ofPopMatrix();
 
-      
 }
 
 

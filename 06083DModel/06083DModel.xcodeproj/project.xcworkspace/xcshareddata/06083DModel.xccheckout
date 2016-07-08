@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9241052D-6C1C-48C5-8263-C9B0B839506C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>15DC1E5F4E3132CDEEDEC147B29A51CFF716BF7A</key>
+		<string>https://github.com/PMIY/PMIY_MediaLab2016.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>06083DModel/06083DModel.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>15DC1E5F4E3132CDEEDEC147B29A51CFF716BF7A</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PMIY/PMIY_MediaLab2016.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>15DC1E5F4E3132CDEEDEC147B29A51CFF716BF7A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>15DC1E5F4E3132CDEEDEC147B29A51CFF716BF7A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PMIY_MediaLab2016</string>
+		</dict>
+	</array>
+</dict>
+</plist>
