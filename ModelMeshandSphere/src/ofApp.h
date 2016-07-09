@@ -26,6 +26,9 @@ class ofApp : public ofBaseApp{
     ofVboMesh modmesh,finmesh;
     ofSpherePrimitive sphere;
     ofEasyCam cam;
+    ofImage image;
+    ofLight light;
+    
     float dist;
     
     float sphered;
@@ -34,5 +37,13 @@ class ofApp : public ofBaseApp{
     
     vector<ofVec3f> verts;
     vector<ofVec3f> myVerts;
+    
+    
+    float yNoise;
+    float d;
+    
+    GLuint tex;
+    float tex_width;
+    float tex_height;
 
 };
