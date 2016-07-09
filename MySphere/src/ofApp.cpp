@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    mesh.clear();
+    modmesh.clear();
     
     ofBackground(0);
     ofEnableDepthTest();
@@ -37,14 +37,13 @@ void ofApp::setup(){
                  GL_RGB, GL_UNSIGNED_BYTE, image.getPixels());
     
     //モデル読み込み、メッシュ変換
-    mod.loadModel("Ear.3ds");
+    mod.loadModel("sphere266p.3ds");
     modmesh = mod.getMesh(0);
     vector<ofVec3f>& verts = modmesh.getVertices();
-    
-    
+
         //////球をの頂点を計算//////
         float x,y,z;
-        float r = 100.f;
+        float r = 10.f;
         float radianCvt = 3.1415926/180.f;
         
         int i_count = 0;
@@ -74,17 +73,17 @@ void ofApp::setup(){
     }
     
     
-    //////////////////////変形しているよおおおお
+//    //////////////////////変形しているよおおおお
+//    for (int k=0; k<=90; k++) {
+//        for (int i=0; i<=90; i++) {
+//            for(int m=0; m < verts.size(); m++){
+//                vtxs[k][i].x *= verts[m].x;
+//                vtxs[k][i].y *= verts[m].y;
+//                vtxs[k][i].z *= verts[m].z;
+//            }
+//        }
+//    }
     
-    for (int k=200; k<=300; k++) {
-        for (int i=0; i<=90; i++) {
-            for(int m=0; m < 90; m++){
-                vtxs[k][i].x += verts[m].x;
-                vtxs[k][i].y += verts[m].y;
-                vtxs[k][i].z += verts[m].z;
-            }
-        }
-    }
     
  
 }
@@ -96,14 +95,12 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    
-    
     //肌がもにもにしている。(鳥肌っぽい)
-    float liquidness = 100;
-    float amplitude = 0.5;
-    float speedDampen = ofNoise(0,10);
+    float liquidness = 10;
+    float amplitude = 0.1;
+    float speedDampen = ofNoise(50,100);
     
-    for (int k=10; k<=360; k++) {
+    for (int k=200; k<=360; k++) {
         for (int i=-80; i<=90; i++) {
             
             vtxs[k][i].x += ofSignedNoise(vtxs[k][i].x,vtxs[k][i].y,vtxs[k][i].z,ofGetElapsedTimef()/speedDampen)*amplitude;
@@ -117,11 +114,8 @@ void ofApp::draw(){
    
     cam.begin();
     
-    ofSetColor(255, 0, 0);
-    ofDrawCircle(-300, 900, 300, 10);
-    
-
-//    //GLでテクスチャを貼る！
+  
+    //GLでテクスチャを貼る！
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glBindTexture(GL_TEXTURE_RECTANGLE_EXT, tex);
     glEnable(GL_TEXTURE_RECTANGLE_EXT);
@@ -142,7 +136,7 @@ void ofApp::draw(){
             ty2 = tex_height*(i+1)/180.f;
 
 
-//            //4点ポリゴン・インデックス
+            //4点ポリゴン・インデックス
             glTexCoord2f(tx1, ty1);
             glVertex3f(vtxs[k][i].x, vtxs[k][i].y, vtxs[k][i].z);
             

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>3422B8FC-DD0D-4372-95EC-4DC642305D71</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>MySphere</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>15DC1E5F4E3132CDEEDEC147B29A51CFF716BF7A</key>
 		<string>https://github.com/PMIY/PMIY_MediaLab2016.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MySphere/MySphere.xcodeproj/project.xcworkspace</string>
+	<string>MySphere/MySphere.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>15DC1E5F4E3132CDEEDEC147B29A51CFF716BF7A</key>
