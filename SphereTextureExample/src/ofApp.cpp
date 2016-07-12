@@ -8,7 +8,7 @@ void ofApp::setup(){
     image.load("ST0006.jpg");
     
     //球を生成
-    sphere.set(200, 8);
+    sphere.set(10, 8);
     //球からメッシュを生成
     sphereMesh = sphere.getMesh();
 }
@@ -24,6 +24,8 @@ void ofApp::draw(){
     ofEnableDepthTest();
     //テクスチャー適用
     image.getTexture().bind();
+    
+    
     
     cam.begin();
     

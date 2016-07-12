@@ -9,20 +9,17 @@ void ofApp::setup(){
     ofEnableDepthTest();
     cam.setDistance(100);
     //ofSetFullscreen(TRUE);
-
     
     //Lighting
     light.enable();
     light.setPosition(-300, 500, 300);
-    light.setAmbientColor(ofFloatColor(0.1, 0.1, 0.1));
+    //light.setAmbientColor(ofFloatColor(0.1, 0.1, 0.1));
     light.setDiffuseColor(ofFloatColor(1.0, 1.0, 1.0));
-//  light.setSpecularColor(ofFloatColor(1.0, 1.0, 1.0));
-
+    //light.setSpecularColor(ofFloatColor(1.0, 1.0, 1.0));
     
     //画像読み込み
     ofDisableArbTex();
     image.load("ST0006.jpg");
-    
     ofTexture oftex = image.getTexture();
     tex_width = oftex.getWidth();
     tex_height = oftex.getHeight();
@@ -36,14 +33,21 @@ void ofApp::setup(){
                  0,
                  GL_RGB, GL_UNSIGNED_BYTE, image.getPixels());
     
-    //モデル読み込み、メッシュ変換
-    mod.loadModel("sphere266p.3ds");
-    modmesh = mod.getMesh(0);
-    vector<ofVec3f>& verts = modmesh.getVertices();
+//    //モデル読み込み、メッシュ変換
+//    mod.loadModel("sphere266p.3ds");
+//    modmesh = mod.getMesh(0);
+//    verts = modmesh.getVertices();
+    
+    
+//みに球を生成    //球からメッシュを生成//点の多さは決められるう。
+    sphere.set(120, 10);
+    sphereMesh = sphere.getMesh();
+    sphereverts = sphereMesh.getVertices();
 
-        //////球をの頂点を計算//////
+    
+//////球をの頂点を計算//////
         float x,y,z;
-        float r = 10.f;
+        float r = 100.f;
         float radianCvt = 3.1415926/180.f;
         
         int i_count = 0;
@@ -72,49 +76,140 @@ void ofApp::setup(){
         }
     }
     
+
+    //////半球をの頂点を計算//////
+
+    ofPopMatrix();
+    ofTranslate(500, 500);
     
-//    //////////////////////変形しているよおおおお
-//    for (int k=0; k<=90; k++) {
-//        for (int i=0; i<=90; i++) {
-//            for(int m=0; m < verts.size(); m++){
-//                vtxs[k][i].x *= verts[m].x;
-//                vtxs[k][i].y *= verts[m].y;
-//                vtxs[k][i].z *= verts[m].z;
-//            }
-//        }
-//    }
+    float hx,hy,hz;
+    float hr = 50.f;
+    float hradianCvt = 3.1415926/180.f;
+    
+    int hi_count = 0;
+    int hk_count = 0;
+    
+    for (int hk=0;hk<=360; hk++) {
+        hk_count++;
+        
+        for (int hi=-90;hi<=90; hi++) {
+            if (hk == 0) hi_count++;
+            
+            hy = hr*sin( hi*hradianCvt );
+            
+            float hxz = hr*cos( hi*hradianCvt );
+            
+            hx = hxz*cos(hk*radianCvt);
+            hz = hxz*sin(hk*radianCvt);
+            
+            int hkIndex = (int)hk;
+            int hiIndex = ((int)hi+90);
+            
+            hvtxs[hkIndex][hiIndex].x = hx;
+            hvtxs[hkIndex][hiIndex].y = hy;
+            hvtxs[hkIndex][hiIndex].z = hz;
+        }
+    }
+    ofPushMatrix();
     
     
- 
+    float liquidness = 50;
+    float amplitude = 0.5;
+    float speedDampen = ofNoise(50,100);
+    
+    for (int k=1;k<=45; k++) {
+        for (int i=1;i<=45; i++) {
+
+            vtxs[k][i].x = ofLerp(vtxs[k][i].x, hvtxs[k][i].x,ofNoise(1,00.1,ofGetElapsedTimef()/speedDampen));
+            
+            //vtxs[k][i].y = ofLerp(vtxs[k][i].y, hvtxs[k][i].y, ofNoise(10,00.1,ofGetElapsedTimef()/speedDampen));
+            
+            //vtxs[k][i].z = ofLerp(vtxs[k][i].z, hvtxs[k][i].z, ofNoise(10,00.1,ofGetElapsedTimef()/speedDampen));
+        }
+    }
+
+    
+    
+
+
+
 }
 //--------------------------------------------------------------
 void ofApp::update(){
+
 
     
 }
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    //肌がもにもにしている。(鳥肌っぽい)
-    float liquidness = 10;
-    float amplitude = 0.1;
+    float liquidness = 50;
+    float amplitude = 0.5;
     float speedDampen = ofNoise(50,100);
     
-    for (int k=200; k<=360; k++) {
-        for (int i=-80; i<=90; i++) {
+    for (int k=30;k<=90; k++) {
+        for (int i=30;i<=90; i++) {
             
-            vtxs[k][i].x += ofSignedNoise(vtxs[k][i].x,vtxs[k][i].y,vtxs[k][i].z,ofGetElapsedTimef()/speedDampen)*amplitude;
-     
-            vtxs[k][i].y += ofSignedNoise(vtxs[k][i].z,vtxs[k][i].x,vtxs[k][i].y,ofGetElapsedTimef()/speedDampen)*amplitude;
-         
-            vtxs[k][i].z += ofSignedNoise(vtxs[k][i].y,vtxs[k][i].z,vtxs[k][i].x,ofGetElapsedTimef()/speedDampen)*amplitude;
+            vtxs[k][i].x = ofLerp(vtxs[k][i].x, hvtxs[k][i].x,ofNoise(1,00.1,ofGetElapsedTimef()/speedDampen));
+            
+            //vtxs[k][i].y = ofLerp(vtxs[k][i].y, hvtxs[k][i].y, ofNoise(10,00.1,ofGetElapsedTimef()/speedDampen));
+            
+            //vtxs[k][i].z = ofLerp(vtxs[k][i].z, hvtxs[k][i].z, ofNoise(10,00.1,ofGetElapsedTimef()/speedDampen));
         }
     }
+    
+    
+    for (int k=90;k<=150; k++) {
+        for (int i=90;i<=150; i++) {
+            
+            vtxs[k][i].x = ofLerp(vtxs[k][i].x, hvtxs[k][i].x,ofNoise(1,00.1,ofGetElapsedTimef()/speedDampen));
+        }
+    }
+    
+    
+    for (int k=150;k<=300; k++) {
+        for (int i=150;i<=180; i++) {
+            
+            vtxs[k][i].x = ofLerp(vtxs[k][i].x, hvtxs[k][i].x,ofNoise(1,00.1,ofGetElapsedTimef()/speedDampen));
+        }
+    }
+    
+    for (int k=200;k<=360; k++) {
+        for (int i=100;i<=180; i++) {
+            
+            vtxs[k][i].x = ofLerp(vtxs[k][i].x, hvtxs[k][i].x,ofNoise(1,00.1,ofGetElapsedTimef()/speedDampen));
+        }
+    }
+
+    
+
+//    
+//    float p;
+//    p=20;
+//    ofDrawBitmapString(ofToString(sphereMesh.getVertices().size()), 10,10);
+//    ofDrawBitmapString(ofToString(sphereMesh.getVertices().size()/2), 50,10);
+//    ofDrawBitmapString(ofToString(p),80,10);
+//    ofDrawBitmapString(ofToString(pow(p,2.0)), 100,10);
+//    
+//    //肌がもにもにしている。(鳥肌っぽい)
+//    float liquidness = 50;
+//    float amplitude = 0.5;
+//    float speedDampen = ofNoise(50,100);
+//
+//    for (int k=1; k<=360; k++) {
+//        for (int i=-89; i<=90; i++) {
+//            
+//            vtxs[k][i].x += ofSignedNoise(vtxs[k][i].x,vtxs[k][i].y,vtxs[k][i].z,ofGetElapsedTimef()/speedDampen)*amplitude;
+//     
+//            vtxs[k][i].y += ofSignedNoise(vtxs[k][i].z,vtxs[k][i].x,vtxs[k][i].y,ofGetElapsedTimef()/speedDampen)*amplitude;
+//         
+//            vtxs[k][i].z += ofSignedNoise(vtxs[k][i].y,vtxs[k][i].z,vtxs[k][i].x,ofGetElapsedTimef()/speedDampen)*amplitude;
+//        }
+//    }
     
    
     cam.begin();
     
-  
     //GLでテクスチャを貼る！
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glBindTexture(GL_TEXTURE_RECTANGLE_EXT, tex);

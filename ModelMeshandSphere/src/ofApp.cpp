@@ -28,23 +28,23 @@ void ofApp::setup(){
     //  light.setSpecularColor(ofFloatColor(1.0, 1.0, 1.0));
     //画像
     image.load("ST0006.jpg");
-    ofTexture oftex = image.getTexture();
-    tex_width = oftex.getWidth();
-    tex_height = oftex.getHeight();
-    //texture　GL設定
-    glGenTextures(1, &tex);
-    glBindTexture(GL_TEXTURE_RECTANGLE_EXT, tex);
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glTexImage2D(GL_TEXTURE_RECTANGLE_EXT, 0, GL_RGBA,
-                 image.getWidth(), image.getHeight(),
-                 0,
-                 GL_RGB, GL_UNSIGNED_BYTE, image.getPixels());
+//    ofTexture oftex = image.getTexture();
+//    tex_width = oftex.getWidth();
+//    tex_height = oftex.getHeight();
+//    //texture　GL設定
+//    glGenTextures(1, &tex);
+//    glBindTexture(GL_TEXTURE_RECTANGLE_EXT, tex);
+//    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+//    glTexImage2D(GL_TEXTURE_RECTANGLE_EXT, 0, GL_RGBA,
+//                 image.getWidth(), image.getHeight(),
+//                 0,
+//                 GL_RGB, GL_UNSIGNED_BYTE, image.getPixels());
 
     
     
     
     //球の大きさ
-    sphered = 10;
+    sphered = 100;
     
     //モデルからメッシュ取り
     mod.loadModel("models/Bast.3ds");

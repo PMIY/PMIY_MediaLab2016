@@ -25,13 +25,18 @@ public:
     ofEasyCam cam;
     ofVboMesh modmesh;
     ofVec3f vtxs[361][181];
+    ofVec3f hvtxs[361][181];
+    vector<ofVec3f> verts,sphereverts;
+    
     ofxAssimpModelLoader mod;
     ofLight light;
     ofImage image;
 
-    
     GLuint tex;
     float tex_width;
     float tex_height;
     
+    ofSpherePrimitive sphere;
+    ofMesh sphereMesh;
+
 };
