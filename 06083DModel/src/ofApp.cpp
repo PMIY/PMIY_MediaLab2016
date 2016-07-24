@@ -2,8 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    ofSetFullscreen(true);
+    cam.setPosition(0, 0, 1000);
 
-    def = new Deform("models/dog.3ds");
+    def = new Deform("models/Bast.3ds");
     def2 = new Deform("models/bast.3ds");
     def3 = new Deform("models/Belly.3ds");
     def4 = new Deform("models/Back.3ds");
@@ -50,7 +53,7 @@ void ofApp::draw(){
     def8->draw();
     
     cam.end();
-    ofDrawBitmapString(ofToString(debug_num), 10, 10);
+   // ofDrawBitmapString(ofToString(debug_num), 10, 10);
     
 
     

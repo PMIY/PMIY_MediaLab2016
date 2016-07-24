@@ -15,6 +15,7 @@
 void ofApp::setup(){
     
     
+    ofSetFullscreen(true);
     ofSetFrameRate(30);
     ofEnableDepthTest();
     ofBackground(0);
@@ -27,7 +28,7 @@ void ofApp::setup(){
     light.setDiffuseColor(ofFloatColor(1.0, 1.0, 1.0));
     //  light.setSpecularColor(ofFloatColor(1.0, 1.0, 1.0));
     //画像
-    image.load("ST0006.jpg");
+    image.load("skin2.jpg");
 //    ofTexture oftex = image.getTexture();
 //    tex_width = oftex.getWidth();
 //    tex_height = oftex.getHeight();
@@ -47,7 +48,7 @@ void ofApp::setup(){
     sphered = 100;
     
     //モデルからメッシュ取り
-    mod.loadModel("models/Bast.3ds");
+    mod.loadModel("models/Hip.3ds");
     modmesh = mod.getMesh(0);
     
     //モデルのメッシュから点を取り出す
@@ -156,8 +157,8 @@ void ofApp::draw(){
     
     image.getTexture().bind();
     //finmesh.drawWireframe();
-    //finmesh.drawVertices();
-    finmesh.drawFaces();
+    finmesh.drawVertices();
+    //finmesh.drawFaces();
     image.getTexture().unbind();
     
     cam.end();

@@ -4,8 +4,9 @@
 Deform::Deform( string fileName ){
     
     mod.loadModel(fileName);
+    
     ofDisableArbTex();
-    image.load("skin3.jpg");
+    image.load("ST0006.jpg");
     
     }
 

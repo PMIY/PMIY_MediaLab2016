@@ -23,10 +23,11 @@ public:
     void gotMessage(ofMessage msg);
     
     ofEasyCam cam;
-    ofVboMesh modmesh;
+    ofVboMesh modmesh,hshperemesh;
     ofVec3f vtxs[361][181];
     ofVec3f hvtxs[361][181];
     vector<ofVec3f> verts,sphereverts;
+    ofVec3f modVec;
     
     ofxAssimpModelLoader mod;
     ofLight light;
