@@ -30,8 +30,9 @@ public:
     ofVec3f modVec;
     
     ofxAssimpModelLoader mod;
-    ofLight light;
+    ofLight light,light2,light3;
     ofImage image;
+    ofMaterial material;
 
     GLuint tex;
     float tex_width;

@@ -14,12 +14,31 @@ void ofApp::setup(){
     
     //Lighting
     light.enable();
-    light.setSpotlight();
-    light.setScale(100);
-    light.setPosition(500, 100, 500);
+    light.setPointLight();
+    light.setPosition(300, 100, 100);
     light.setAmbientColor(ofFloatColor(0.1, 0.1, 0.1));
-    light.setDiffuseColor(ofFloatColor(0.7, 0.5, 0.5));
+    light.setDiffuseColor(ofFloatColor(0.7, 0.55, 0.5));
     light.setSpecularColor(ofFloatColor(0.2, 0.2, 0.2));
+    
+    light2.enable();
+    light2.setPointLight();
+    light2.setPosition(-300, 100, -100);
+    light2.setAmbientColor(ofFloatColor(0.1, 0.1, 0.1));
+    light2.setDiffuseColor(ofFloatColor(0.4, 0.6, 0.7));
+    light2.setSpecularColor(ofFloatColor(0.2, 0.2, 0.2));
+    
+    light3.enable();
+    light3.setPointLight();
+    light3.setPosition(0, -100, -100);
+    light3.setAmbientColor(ofFloatColor(0.1, 0.1, 0.1));
+    light3.setDiffuseColor(ofFloatColor(0.5, 0.6, 0.5));
+    light3.setSpecularColor(ofFloatColor(0.2, 0.2, 0.2));
+    
+    
+    //Material
+    material.setShininess( 120 );
+    material.setSpecularColor(ofColor(255, 255, 255, 255));
+    material.setDiffuseColor(ofColor(100,100,100,255));
     
     //画像読み込み
     ofDisableArbTex();
@@ -167,6 +186,9 @@ void ofApp::setup(){
     }
     
 
+    
+    
+
 }
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -177,16 +199,16 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    float liquidness = 50;
-    float amplitude = 0.02;
-    float amplitude2 = 0.05;
-    float amplitude3 = 0.03;
-    float amplitude4 = 0.01;
-    float speedDampen = ofNoise(50,70);
-    float speedDampen2 = ofNoise(0,70);
-    float speedDampen3 = ofNoise(30,50);
-    float speedDampen4 = ofNoise(50,100);
-    
+//    float liquidness = 50;
+//    float amplitude = 0.02;
+//    float amplitude2 = 0.05;
+//    float amplitude3 = 0.03;
+//    float amplitude4 = 0.01;
+//    float speedDampen = ofNoise(50,70);
+//    float speedDampen2 = ofNoise(0,70);
+//    float speedDampen3 = ofNoise(30,50);
+//    float speedDampen4 = ofNoise(50,100);
+//    
     
 //    for (int k=120;k<=180; k++) {
 //        for (int i=120;i<=180; i++) {
@@ -231,9 +253,9 @@ void ofApp::draw(){
    
     cam.begin();
     
-    ofDrawCircle(0, 100, 100,10);
-    //modmesh.drawVertices();
-    //hshperemesh.drawVertices();
+    ofRotateY(ofGetElapsedTimef()*10);
+    material.begin();
+    
     
     //GLでテクスチャを貼る！
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -272,6 +294,7 @@ void ofApp::draw(){
         glEnd();
     }
     glDisable(GL_TEXTURE_RECTANGLE_EXT);
+    material.end();
     
     
     ofPopMatrix();
