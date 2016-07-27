@@ -33,12 +33,15 @@ public:
     ofLight light,light2,light3;
     ofImage image;
     ofMaterial material;
-
+    
     GLuint tex;
     float tex_width;
     float tex_height;
     
     ofSpherePrimitive sphere;
     ofMesh sphereMesh;
-
+    
+    float HomeoBox [68] = {18,18,18,7,18,17,20,25,20,18,25,17,20,12,5,12,5,11,5,6,8,20,14,8,25,12,20,18,18,18,18,9,5,13,1,8,1,12,3,12,20,5,18,17,9,11,9,23,6,17,14,18,18,13,11,12,11,11,5,9};
+    
+    
 };
