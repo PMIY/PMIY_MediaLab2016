@@ -57,10 +57,10 @@ void ofApp::setup(){
                  0,
                  GL_RGB, GL_UNSIGNED_BYTE, image.getPixels());
     
-    //モデル読み込み、メッシュ変換
-    mod.loadModel("models/oppai.3ds");
-    modmesh = mod.getMesh(0);
-    verts = modmesh.getVertices();
+//    //モデル読み込み、メッシュ変換
+//    mod.loadModel("models/oppai.3ds");
+//    modmesh = mod.getMesh(0);
+//    verts = modmesh.getVertices();
     
     
     //////球をの頂点を計算//////
